@@ -82,7 +82,7 @@ message RefreshSessionRequest {
 }
 
 message RefreshSessionResponse {
-    string statusType = 1;
+    int32 statusType = 1;
     string statusMessage = 2;
     string derivativeToken = 3;
 }
