@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.user_service";
+option java_outer_classname = "UserServiceProto";
+
+package user_service;
+
+service UserService {
+    //Account CRUD
+    rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc UpdateInfo (UpdateInfoRequest) returns (UpdateInfoResponse) {}
+    rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse) {}
+
+    //Account Actions
+    rpc Login (LoginRequest) returns (LoginResponse) {}
+    rpc RefreshSession (RefreshSessionRequest) returns (RefreshSessionResponse) {}
+    rpc PerformTwoFactorAuth (TwoFactorAuthRequest) returns (LoginResponse) {}
+    rpc Logout (LogoutRequest) returns (LogoutResponse) {}
+    rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
+    rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse) {}
+    rpc LockAccount (LockAccountRequest) returns (LockAccountResponse) {}
+    rpc UnlockAccount (UnlockAccountRequest) returns (UnlockAccountResponse) {}
+    rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
+    rpc DeleteRole (DeleteRoleRequest) returns (DeleteRoleResponse) {}
+}
+
+message CreateAccountRequest {
+    string firstName = 1;
+    string middleInitial = 2;
+    string lastName = 3;
+    string username = 4;
+    string password = 5;
+    string email = 6;
+    string phoneNumber = 7;
+}
+
+message CreateAccountResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message UpdateInfoRequest {
+    string firstName = 1;
+    string middleInitial = 2;
+    string lastName = 3;
+    string username = 4;
+    string email = 5;
+    string phoneNumber = 6;
+}
+
+message UpdateInfoResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message DeleteAccountRequest {
+    string username = 1;
+    string email = 2;
+}
+
+message DeleteAccountResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message LoginRequest {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message LoginResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+    string originToken = 3;
+    string derivativeToken = 4;
+}
+
+message RefreshSessionRequest {
+    string originToken = 1;
+}
+
+message RefreshSessionResponse {
+    string statusType = 1;
+    string statusMessage = 2;
+    string derivativeToken = 3;
+}
+
+message TwoFactorAuthRequest {
+    string TwoFactorAnswer = 1;
+}
+
+message LogoutRequest {
+    string username = 1;
+    string email = 2;
+    string originToken = 3;
+    string derivativeToken = 4;
+}
+
+message LogoutResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message ChangePasswordRequest {
+    string username = 1;
+    string email = 2;
+    string oldPassword = 3;
+    string newPassword = 4;
+}
+
+message ChangePasswordResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message ResetPasswordRequest {
+    string username = 1;
+    string email = 2;
+}
+
+message ResetPasswordResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message LockAccountRequest {
+    string username = 1;
+    string email = 2;
+    int32 lockType = 3;
+}
+
+message LockAccountResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message UnlockAccountRequest {
+    string username = 1;
+    string email = 2;
+}
+
+message UnlockAccountResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message AddRoleRequest {
+    string username = 1;
+    string email = 2;
+    int32 role = 3;
+}
+
+message AddRoleResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
+
+message DeleteRoleRequest {
+    string username = 1;
+    string email = 2;
+    int32 role = 3;
+}
+
+message DeleteRoleResponse {
+    int32 statusType = 1;
+    string statusMessage = 2;
+}
