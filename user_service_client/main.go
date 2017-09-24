@@ -21,17 +21,11 @@ func main() {
 	defer conn.Close()
 	c := pb.NewUserServiceClient(conn)
 
-	createAccountRequest := &pb.CreateAccountRequest{
-		FirstName:     "Test",
-		MiddleInitial: "G.",
-		LastName:      "Test",
-		Username:      "test",
-		Password:      "test123",
-		Email:         "test@test.com",
-		PhoneNumber:   "4439740421",
+	createAccountRequest := &pb.UnlockAccountRequest{
+		Username: "test6",
 	}
 
-	r, err := c.CreateAccount(context.Background(), createAccountRequest)
+	r, err := c.UnlockAccount(context.Background(), createAccountRequest)
 	if err != nil {
 		log.Fatalf("Could not create account: %v", err)
 	}

@@ -78,13 +78,15 @@ message LoginResponse {
 }
 
 message RefreshSessionRequest {
-    string originToken = 1;
+    string username = 1;
+    string originToken = 2;
 }
 
 message RefreshSessionResponse {
     int32 statusType = 1;
     string statusMessage = 2;
-    string derivativeToken = 3;
+    string originToken = 3;
+    string derivativeToken = 4;
 }
 
 message TwoFactorAuthRequest {
