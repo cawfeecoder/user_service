@@ -7,6 +7,7 @@ import (
 )
 
 var c *redis.Client
+var d *redis.Client
 
 func init() {
 
@@ -16,10 +17,21 @@ func init() {
 		DB:       0,  // use default DB
 	})
 
+	d = redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "",
+		DB:       1,
+	})
+
 	log.Printf("Successfully connected to the Database!")
 }
 
-//GetClient - Get a connection from the DB
-func GetClient() *redis.Client {
+//GetOriginClient - Get a connection to Origin Token Database
+func GetOriginClient() *redis.Client {
 	return c
+}
+
+//GetDerivClient - Get a connection to Derivative Token Database
+func GetDerivClient() *redis.Client {
+	return d
 }
